@@ -1,25 +1,45 @@
 #include <iostream>
-#include <vector>
+#include <stack>
 using namespace std;
 
-int main(){
-    int n;
-    cin >> n;
-    vector <int> v;
-    for(int i = 0; i < n; i++){
-        long long p;
-        cin >> p;
-        v.push_back(p);
+int main() {
+    int N;
+    cin >> N;
+
+    int a[100000];
+    int ans[100000];
+
+    for (int i = 0; i < N; i++) {
+        cin >> a[i];
     }
-    for(int i = 0; i < n; i++){
-        bool found = false;
-        for(int j = i - 1; j >= 0; j--){
-            if(v[j] < v[i]){
-                cout << v[j] << ' ';
-                found = true;
-                break;
-            }
+
+    stack<int> st;  
+
+    for (int i = 0; i < N; i++) {
+        int x = a[i];
+
+
+        while (!st.empty() && st.top() > x) {
+            st.pop();
         }
-        if(found == false){cout << "-1" << ' ';}
+
+        if (st.empty()) {
+            ans[i] = -1;
+        } else {
+            ans[i] = st.top();
+        }
+
+        st.push(x);
     }
+
+    for (int i = 0; i < N; i++) {
+        cout << ans[i];
+        if (i + 1 == N) {
+            cout << '\n';  
+        } else {
+            cout << ' ';   
+        }
+    }
+
+    return 0;
 }
