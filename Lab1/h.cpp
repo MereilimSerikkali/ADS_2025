@@ -1,29 +1,31 @@
 #include <iostream>
-
+#include <stack>
 using namespace std;
 
-bool is_prime(int number){
-    bool prime = true; 
-    if(number < 2){
-        return false;
-    }
-    for(int i = 2; i*i <= number; i++){
-        if(number%i == 0){
-            return false;
-        }
-    }
-    return true;
-}
-
-
-int main(){
+int main() {
     long long n;
     cin >> n;
-    if(is_prime(n)){
-        cout << "YES";
-    }
-    else{
+
+    if (n < 2) {
         cout << "NO";
+        return 0;
     }
+
+    stack<long long> st;
+    for (long long i = 2; i * i <= n; i++) {
+        st.push(i);
+    }
+
+    bool prime = true;
+    while (!st.empty()) {
+        long long x = st.top();
+        st.pop();
+        if (n % x == 0) {
+            prime = false;
+            break;
+        }
+    }
+
+    cout << (prime ? "YES" : "NO");
     return 0;
 }

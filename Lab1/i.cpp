@@ -21,10 +21,8 @@ int main() {
         int iK = qK.front(); qK.pop();
 
         if (iS < iK) {
-            // Sakayanagi student acts earlier → bans Katsuragi
             qS.push(iS + n);
         } else {
-            // Katsuragi student acts earlier → bans Sakayanagi
             qK.push(iK + n);
         }
     }
