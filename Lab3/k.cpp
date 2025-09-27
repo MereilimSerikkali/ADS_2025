@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+// находим миним индекс у которого значение >= таргет 
 int binarySearch(const vector<long long>& prefix, int left, int right, long long target) {
     int ans = right + 1; 
     while (left <= right) {
@@ -10,7 +10,7 @@ int binarySearch(const vector<long long>& prefix, int left, int right, long long
             ans = mid;       
             right = mid - 1;
         } else {
-            left = mid + 1; 
+            left = mid + 1; // меньше если, то идем направо
         }
     }
     return ans;
